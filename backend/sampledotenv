@@ -1,2 +1,3 @@
 DB_URL= <URL of the MongoDatabase>
-DB_NAME= <Name fo the MongoDatabase>
+DB_NAME= <Name of the MongoDatabase>
+JWT_SECRET=<Your JWT_SECRET>
