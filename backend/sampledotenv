@@ -1,0 +1,2 @@
+DB_URL= <URL of the MongoDatabase>
+DB_NAME= <Name fo the MongoDatabase>
