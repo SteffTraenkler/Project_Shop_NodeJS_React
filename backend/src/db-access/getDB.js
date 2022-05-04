@@ -11,12 +11,13 @@ let dbReference;
 
 async function getDB() {
     if (dbReference) {
-        return (dbReference)
+        return dbReference
     }
     try {
         const connectedClient = await client.connect()
         const db = connectedClient.db(databaseName)
         dbReference = db;
+        return dbReference
     } catch (err) {
         console.log(err);
         throw { err: "Failed to connect to database" }

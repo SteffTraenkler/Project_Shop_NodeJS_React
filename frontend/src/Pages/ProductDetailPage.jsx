@@ -25,7 +25,7 @@ export default function ProductDetailPage() {
     return (
         <DefaultPage title={product ? product.title : "Product page"}>
             {product && <div className="product-detail-box">
-                <div><img src={product.image} alt={product.title} /></div>
+                <div className="image-wrapper"><img src={product.image} alt={product.title} /></div>
                 <div className="product-detail-info">
                     <h3>{product.title} - {product.price}€</h3>
                     <p>

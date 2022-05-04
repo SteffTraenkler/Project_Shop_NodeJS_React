@@ -7,6 +7,7 @@ async function login({ email, password }) {
 
     //1. validate if user with this mail address exists
     const foundUser = await findUserByEmail(email)
+    console.log("foundUser", foundUser);
     if (!foundUser) {
         throw new Error(invalidLoginMsg)
     }
@@ -15,8 +16,6 @@ async function login({ email, password }) {
     const user = makeUser(foundUser)
     const passwordHash = createPasswordHash(password, user.passwordSalt)
     const correctPassword = user.passwordHash == passwordHash
-    console.log("User-pw-Hash", user.passwordHash);
-    console.log("pw-Hash", passwordHash);
     if (!correctPassword) {
         //3. send error for incorrect password
         throw new Error(invalidLoginMsg)

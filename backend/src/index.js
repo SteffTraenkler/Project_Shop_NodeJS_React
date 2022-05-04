@@ -147,16 +147,18 @@ app.post("/api/users/register", async (req, res) => {
     }
 })
 
-app.get("/api/users/login", async (req, res) => {
+app.post("/api/users/login", async (req, res) => {
     try {
-        const email = res.body.email
+        const email = req.body.email
         const password = req.body.password
+
+        console.log('try login');
 
         const token = await login({ email, password })
         res.json({ token })
     } catch (error) {
         console.log(error);
-        res.json(404).json({ err: "Not found" })
+        res.status(404).json({ err: "Not found" })
     }
 })
 

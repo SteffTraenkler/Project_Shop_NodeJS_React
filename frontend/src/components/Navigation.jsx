@@ -10,7 +10,7 @@ export default function Navigation(props) {
             <div>
                 {props.token
                     ? <div>
-                        <Link to={"addProduct"}>Add Product</Link>
+                        <Link to={"/admin/addProduct"}>Add Product</Link>
                         <Link to={"/admin/dashboard"}>Dashboard</Link>
                         <button className='logout-btn' onClick={props.logout}>Logout</button>
                     </div>

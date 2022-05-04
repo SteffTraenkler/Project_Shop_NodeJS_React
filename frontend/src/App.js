@@ -7,6 +7,7 @@ import AllProductsPage from './Pages/AllProductsPage';
 import ProductDetailPage from './Pages/ProductDetailPage';
 import LoginPage from './Pages/LoginPage';
 import RegistrationPage from './Pages/RegistrationPage';
+import AddProductPage from './Pages/AddProductPage';
 
 function App() {
   const [token, setToken] = useState(null)
@@ -24,7 +25,8 @@ function App() {
           <Route />
           <Route path="/login" element={<LoginPage setToken={setToken} />} />
           <Route path="/register" element={<RegistrationPage />} />
-          <Route />
+
+          <Route path="/admin/addProduct" element={<AddProductPage token={token} />} />
           <Route />
           <Route />
           <Route />
