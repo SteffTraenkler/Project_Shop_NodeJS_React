@@ -23,7 +23,7 @@ export default function LoginPage(props) {
             .then((resp => resp.json()))
             .then(result => {
                 if (result.err) {
-                    setError("There was a problem with ypur login")
+                    setError("There was a problem with your login")
                 } else {
                     setError("")
 

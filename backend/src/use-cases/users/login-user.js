@@ -15,7 +15,7 @@ async function login({ email, password }) {
     //2. validate password
     const user = makeUser(foundUser)
     const passwordHash = createPasswordHash(password, user.passwordSalt)
-    const correctPassword = user.passwordHash == passwordHash
+    const correctPassword = user.passwordHash === passwordHash
     if (!correctPassword) {
         //3. send error for incorrect password
         throw new Error(invalidLoginMsg)
