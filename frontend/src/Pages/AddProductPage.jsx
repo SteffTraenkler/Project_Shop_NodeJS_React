@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import { apiURL } from "../api/api";
 import DefaultPage from "../components/DefaultPage";
 
 export default function AddProductPage(props) {
@@ -57,6 +58,55 @@ export default function AddProductPage(props) {
         setVariationsBuffer(varList)
     }
     //end Variations Input Handler
+    const test = () => {
+        setCategory(categoryBuffer.map((e) => {
+            let x = e.category
+            return x
+        }))
+        console.log("categor", JSON.stringify(category));
+    }
+
+    const addProduct = (event) => {
+        event.preventDefault()
+
+        setCategory(categoryBuffer.map((e) => {
+            let x = e.category
+            return x
+        }))
+
+        setVariations(variationsBuffer.map((e) => {
+            let x = e.variations
+            return x
+        }))
+
+        const formData = new FormData()
+
+        formData.append("title", title)
+        formData.append("category", JSON.stringify(category))
+        formData.append("description", description)
+        formData.append("price", price)
+        formData.append("variations", JSON.stringify(variations))
+        formData.append("productImage", productImage, productImage.name)
+        formData.append("stock", stock)
+
+        fetch(apiURL + "/api/products/add", {
+            method: "POST",
+            headers: {
+                token: props.token
+            },
+            body: formData
+        })
+            .then(resp => resp.json())
+            .then(result => {
+                if (result.err) {
+                    setError(result.err)
+                } else if (result.acknowledged === true && result.insertedId) {
+                    navigate("/products/" + result.insertedId)
+                } else {
+                    setError("Unknown error while adding product, please try again")
+                }
+            })
+    }
 
 
     if (!props.token) {
@@ -126,7 +176,13 @@ export default function AddProductPage(props) {
                 <label htmlFor="product-stock-input">Stock:</label>
                 <input type="number" id="product-stock-input" value={stock} onChange={(e) => setStock(Number(e.target.value))} />
 
+                <button className="" onClick={addProduct}>Add Product</button>
 
+                <br />
+
+                {error && <p className="error-msg">{error}</p>}
+
+                <p onClick={test}>test</p>
             </form>
 
         </DefaultPage>
